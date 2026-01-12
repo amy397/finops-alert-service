@@ -11,7 +11,7 @@ feign:
       url: http://localhost:8080
 
 slack:
-  webhook-url:
+  webhook-url: ${SLACK_WEBHOOK_URL:}
   channel: "#finops-alerts"
   username: "FinOps Bot"
   icon-emoji: ":moneybag:"
