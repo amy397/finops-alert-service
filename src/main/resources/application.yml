@@ -1,6 +1,8 @@
 spring:
   application:
     name: alert-service
+  profiles:
+    active: local
 
 server:
   port: 8081
@@ -8,7 +10,7 @@ server:
 feign:
   client:
     cost-api:
-      url: http://localhost:8080
+      url: ${FEIGN_CLIENT_COST_API_URL:http://localhost:8080}
 
 slack:
   webhook-url: ${SLACK_WEBHOOK_URL:}
