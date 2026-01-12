@@ -1,26 +1,28 @@
 spring:
   application:
     name: alert-service
-  datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/finops}
-    username: ${SPRING_DATASOURCE_USERNAME:finops}
-    password: ${SPRING_DATASOURCE_PASSWORD:finops123}
-  jpa:
-    hibernate:
-      ddl-auto: validate
-    show-sql: false
 
 server:
   port: 8081
 
+feign:
+  client:
+    cost-api:
+      url: http://localhost:8080
+
 slack:
-  webhook-url: ${SLACK_WEBHOOK_URL:}
-  channel: ${SLACK_CHANNEL:#finops-alerts}
+  webhook-url:
+  channel: "#finops-alerts"
+  username: "FinOps Bot"
+  icon-emoji: ":moneybag:"
 
 alert:
   threshold:
     daily-increase-percent: 20
     monthly-budget: 10000
+  schedule:
+    check-cron: "0 0 * * * *"
+    report-cron: "0 0 10 * * *"
 
 logging:
   level:
